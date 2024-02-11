@@ -2,6 +2,7 @@ import React,{Component} from 'react';          //App is a smart component becau
 import CardList from '../Components/CardList';
 import SearchBox from '../Components/SearchBox';
 import Scroll from '../Components/Scroll';
+import ErrorBoundry from '../Components/ErrorBoundry';
 import '../Containers/App.css';
 
 
@@ -42,9 +43,10 @@ class App extends Component{        //creates class for holding/changing state
                 <h1 className= 'f1'>RoboFriends</h1>
                 <SearchBox searchChange = {this.onSearchChange} />       
                 <Scroll >                                       {//Scroll isnt a self closing component, it is used to wrap componetns
-                    }                     
-                    <CardList robots={filteredRobots}/>                            {//what happens here is the filteredRobots can now be accessed as a component to render and return in response to the state of the SearchBox
-         }
+                    }       
+                    <ErrorBoundry>
+                        <CardList robots={filteredRobots}/>                            {//what happens here is the filteredRobots can now be accessed as a component to render and return in response to the state of the SearchBox
+         }          </ErrorBoundry>
                 </Scroll>
             </div>
             );
